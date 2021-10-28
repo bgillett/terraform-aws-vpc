@@ -141,6 +141,13 @@ resource "aws_networkfirewall_firewall" "this" {
       subnet_id = subnet_mapping.value
     }
   }
+  tags = merge(
+  {
+    "Name" = format("%s", var.name)
+  },
+  var.tags,
+  var.firewall_log_tags,
+  )
 }
 
 ################################################################################
